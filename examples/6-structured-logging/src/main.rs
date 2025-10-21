@@ -118,9 +118,11 @@ async fn main() -> std::io::Result<()> {
     let bind_address = format!("{}:{}", address, port);
     // Initialize logging
     let subscriber = FmtSubscriber::builder()
-        .with_max_level(max_level)
+        .with_max_level(max_level::INFO)
         .finish();
+    
     tracing::subscriber::set_global_default(subscriber).expect("Unable to set global default"); 
+    
     info!("Starting the redactr service");
     debug!("Binding to address: {}", bind_address);
     info!(address = %address, port = %port, "Listening for requests");
